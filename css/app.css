@@ -269,6 +269,8 @@ footer {
 
 .attribution a {
     color: hsl(228, 45%, 44%);
+    text-decoration: none;
+      
 }
  @media (min-width:768px) { 
     body {
@@ -376,11 +378,7 @@ footer {
       text-align: center;
       list-style: none;
   }
-  .attribution a {
-   
-    
-    text-decoration: none;
-  }
+  
     
   }
  
