@@ -132,26 +132,26 @@ numberOfPeople.addEventListener("click",function(){
 
 //get the result from percentage buttons
 function getResponse(){
-    let totalPersons=((reqBill.value *Number(savedValue))/100)*numberOfPeople.value;
-    total.innerText=`$${(totalPersons.toFixed(2))}`;//toFixed(2) means round to 2 decimal places
-    let totalTipAmount = ((savedValue)/100)*reqBill.value;
-    tipAmount.innerText=`$${(totalTipAmount.toFixed(2))}`;
-    if(total.value =0){
-        total.innerText="$0.00";
-    }else if(tipAmount.value=0){
-        tipAmount.innerText="$0.00";
+    let totalPerson = ((Number(reqBill.value) + ((reqBill.value * Number(savedValue)) / 100)) / numberOfPeople.value);
+    total.innerText = `$${(totalPerson.toFixed(2))}`;
+    let totalTipAmount = ((reqBill.value * savedValue) / 100) / numberOfPeople.value;
+    tipAmount.innerText = `$${(totalTipAmount.toFixed(2))}`;
+    if (total.value = 0) {
+        total.innerText = "$0.00";
+    } else if (tipAmount.value = 0) {
+        tipAmount.innerText = "$0.00";
     }
 }
 // get the result from Custom input
 function getResultCustom(){
-    let totalPersonCustom=((reqBill.value *Number(savedValue))/100)*numberOfPeople.value;
-    total.innerText=`$${(Number(totalPersonCustom.toFixed(2)))}`;
+    let totalPersonCustom = ((Number(inputBill.value) + ((reqBill.value * customValue) / 100)) / Number(numberOfPeople.value));
+    total.innerText = `$${(Number(totalPersonCustom.toFixed(2)))}`;
 
-    let totalTipAmountCustom = ((savedValue)/100)*reqBill.value;
-    tipAmount.innerText=`$${(Number(totalTipAmountCustom.toFixed(2)))}`;
-    if(numberOfPeople.value<1){
-        total.innerText="$0.00";
-        tipAmount.innerText="$0.00";
+    let totalTipAmountCustom = ((reqBill.value * customValue) / 100) / Number(numberOfPeople.value);
+    tipAmount.innerText = `$${(Number(totalTipAmountCustom.toFixed(2)))}`;
+    if (numberOfPeople.value < 1) {
+        total.innerText = "$0.00";
+        tipAmount.innerText = "$0.00";
     }
 }
 
