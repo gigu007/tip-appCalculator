@@ -372,8 +372,14 @@ footer {
     } 
 
     .attribution {
-      font-size: 0.8rem ;
+      font-size: 1rem ;
       text-align: center;
+      list-style: none;
+  }
+  .attribution a {
+   
+    
+    text-decoration: none;
   }
     
   }
