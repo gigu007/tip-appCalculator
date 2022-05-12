@@ -133,9 +133,11 @@ numberOfPeople.addEventListener("click",function(){
 //get the result from percentage buttons
 function getResponse(){
     
-    let totalTipAmount =savedValue/100*reqBill.value
-    total.innerText = `$${(totalTipAmount.toFixed(2))}`;
-    let tipAmountPerPerson=totalTipAmount/numberOfPeople.value
+    let percentageValue =savedValue/100*reqBill.value
+    let totalTipAmount=Number(reqBill.value) + percentageValue;
+    let totalTipAmountPerPerson=totalTipAmount/numberOfPeople.value;
+    total.innerText = `$${(totalTipAmountPerPerson.toFixed(2))}`;
+    let tipAmountPerPerson=percentageValue/numberOfPeople.value
     tipAmount.innerText = `$${(tipAmountPerPerson.toFixed(2))}`;
     if (total.value = 0) {
         total.innerText = "$0.00";
@@ -147,10 +149,12 @@ function getResponse(){
 function getResultCustom(){
     
    
-    let totalPersonCustom =customValue/100*reqBill.value
-    total.innerText = `$${(Number(totalPersonCustom.toFixed(2)))}`;
-    let totalTipAmountCustom=totalPersonCustom/numberOfPeople.value
-    tipAmount.innerText = `$${(Number(totalTipAmountCustom.toFixed(2)))}`;
+    let customNetTip =customValue/100*reqBill.value
+    let totalCustomTipAmount=Number(reqBill.value) + customNetTip;
+    let totalTipAmountCustom=totalCustomTipAmount/numberOfPeople.value
+    total.innerText = `$${(totalTipAmountCustom.toFixed(2))}`;
+    let totalCustomTipAmountPerPerson=customNetTip/numberOfPeople.value;
+    tipAmount.innerText = `$${(totalCustomTipAmountPerPerson.toFixed(2))}`;
     if (numberOfPeople.value < 1) {
         total.innerText = "$0.00";
         tipAmount.innerText = "$0.00";
