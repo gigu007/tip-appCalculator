@@ -5,14 +5,16 @@ const numberOfPeople= document.querySelector("#number")
 const total = document.querySelector(".response-total-amount");;
 const resetBtn = document.querySelector(".btn-reset");
 const tipAmount = document.querySelector(".response-tip-amount");
-const alert = document.createElement("div");
+const confirm = document.createElement("div");
 let savedValue;
 let customValue;
 // as soon as the form loads focus only on reqBill, all other functions are disabled
 reqBill.focus();
-for(let percentage of allPercentage){
-    percentage.disabled =true;
-}
+
+allPercentage.forEach(percentage=>{
+    percentage.disabled=true;
+})
+
 numberOfPeople.disabled=true;
 resetBtn.disabled=true;
 customPercentage.disabled=true;
@@ -21,17 +23,19 @@ customPercentage.disabled=true;
 reqBill.addEventListener("input", isEmptyReqBill);
 function isEmptyReqBill(){
     if(reqBill.value=="" || reqBill.value==0){
-        alert.classList.add("alert");
-        alert.textContent="Can't be zero or empty"
-        alert.style.color = "red";
+        confirm.classList.add("confirm");
+        confirm.textContent="Can't be zero or empty"
+        confirm.style.color = "red";
         reqBill.style.borderColor="hsl(0,67%,45)";
         numberOfPeople.style.borderColor="grey";
-        reqBill.insertAdjacentElement("beforebegin",alert);
+        reqBill.insertAdjacentElement("beforebegin",confirm);
         reqBill.value="";
         reqBill.focus();
-        for(let percentage of allPercentage){
+       
+        allPercentage.forEach(percentage=>{
             percentage.disabled=true;
-        }
+        })
+        // disableAllbtnPercentage();
         numberOfPeople.disabled=true;
         customPercentage.disabled=true;
         resetBtn.disabled=true;
@@ -39,14 +43,16 @@ function isEmptyReqBill(){
         tipAmount.innerText="$0.00";
         return;
     }else{
-        for(let percentage of allPercentage){
+        
+        allPercentage.forEach(percentage=>{
             percentage.disabled=false;
-        }
+        })
+        // disableAllbtnPercentage();
         reqBill.style.borderColor="hsl(172,67%,45%)";
         customPercentage.disabled=false;
         resetBtn.disabled=false;
-        alert.classList.remove("alert");
-        alert.textContent=  "";
+        confirm.classList.remove("confirm");
+        confirm.textContent=  "";
         getResponse();
         if(numberOfPeople.value<1){
             total.innerText="$0.00";
@@ -59,15 +65,17 @@ function isEmptyReqBill(){
         return;
     }
 }
-//... this function runs, enables input numberOfPeople and runs function isEmptyInputNumberOfPeople
-for(let percentage of allPercentage){
+
+allPercentage.forEach(percentage=>{
     percentage.addEventListener("click",toggleBtn);
-}
+})
+
 //runs when custom percentage input is clicked
 customPercentage.addEventListener("click",function(){
-    for(let percentage of allPercentage){
+    
+    allPercentage.forEach(percentage=>{
         percentage.classList.remove("toggle");
-    }
+    })
     customPercentage.value="";
     customPercentage.focus();
     numberOfPeople.disabled=false;
@@ -88,8 +96,10 @@ function customPercent(){
 }
 // function that toggles buttons
 function toggleBtn(){
-    for(let percentage of allPercentage){
-        percentage.classList.remove("toggle");
+    
+    allPercentage.forEach(percentage=>{
+        percentage.classList.remove("toggle")
+    })
         numberOfPeople.disabled=false;
         numberOfPeople.focus();
         numberOfPeople.addEventListener("input",isEmptyInputNumberOfPeople);
@@ -100,7 +110,7 @@ function toggleBtn(){
             total.innerText="$0.00";
             tipAmount.innerText="$0.00";
         }
-    }
+    // }
     this.classList.add("toggle");
 }
 
@@ -108,11 +118,11 @@ function toggleBtn(){
 //function if the input number of people is empty
 function isEmptyInputNumberOfPeople(){
     if(numberOfPeople.value==="" || numberOfPeople.value ===0 || numberOfPeople.length<=0){
-        alert.classList.add("alert");
-        alert.textContent="Can't be zero "
-        // alert.textContent="hsl(0,67%,45%)";
-        numberOfPeople.style.color="red";
-        numberOfPeople.insertAdjacentElement("beforebegin",alert);
+        confirm.classList.add("confirm");
+        confirm.textContent="Can't be zero "
+        confirm.style.color="hsl(0,67%,45%)";
+        numberOfPeople.style.color="blue";
+        numberOfPeople.insertAdjacentElement("beforebegin",confirm);
         numberOfPeople.value="";
         numberOfPeople.focus();
         total.innerText="$0.00";
@@ -120,8 +130,8 @@ function isEmptyInputNumberOfPeople(){
         return
     }else{
         numberOfPeople.style.borderColor="hsl(172,67%,45%)";
-        alert.classList.remove("alert");
-        alert.textContent="";
+        confirm.classList.remove("confirm");
+        confirm.textContent="";
         getResponse();
     }
 }
@@ -138,7 +148,8 @@ function getResponse(){
     let totalTipAmountPerPerson=totalTipAmount/numberOfPeople.value;
     total.innerText = `$${(totalTipAmountPerPerson.toFixed(2))}`;
     let tipAmountPerPerson=percentageValue/numberOfPeople.value
-    tipAmount.innerText = `$${(tipAmountPerPerson.toFixed(2))}`;
+    // tipAmount.innerText = `$${(tipAmountPerPerson.toFixed(2))}`;
+    tipAmount.innerText=tipAmountPerPerson.toFixed(2);
     if (total.value = 0) {
         total.innerText = "$0.00";
     } else if (tipAmount.value = 0) {
@@ -166,10 +177,12 @@ resetBtn.addEventListener("click",reset);
 function reset(){
     reqBill.value="";
     reqBill.focus();
-    for(let percentage of allPercentage){
-        percentage.classList.remove("toggle");
-        percentage.disabled=true;
-    }
+   
+    allPercentage.forEach(percentage=>{
+           percentage.classList.remove("toggle")
+             percentage.disabled=true
+    
+    })
     customPercentage.disabled=true;
     numberOfPeople.disabled=true;
     numberOfPeople.value="";
