@@ -89,6 +89,9 @@ function customPercent(){
     let min=0;
     if(this.value<= 100 && this.value >0){
         customValue=Number(this.value);
+        customPercentage.style.borderColor="hsl(172,67%,45%)";
+        confirm.classList.remove("confirm");
+        confirm.textContent="";
         getResponse();
     }else if(this.value > max || this.value <=min){
         customPercentage.value="";
