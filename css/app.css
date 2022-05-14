@@ -148,7 +148,7 @@ input{
     cursor: pointer;  
 }
 
-.confirm{
+.alert{
     display: inline;
 }
 
@@ -359,7 +359,7 @@ footer {
     footer {
         position: fixed;
        bottom: 0;
-        /* position: fixed; */
+        
     } 
 
     .attribution {
