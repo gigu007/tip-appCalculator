@@ -158,7 +158,7 @@ input{
     color:hsl(184, 14%, 56%);
 }
 #bill{
-    background: 5%/0.7rem no-repeat url("/images/icon-dollar.svg");
+    background: 5%/0.7rem no-repeat url("../images/icon-dollar.svg");
 }
 #number {
     background: 5%/0.7rem no-repeat url("images/icon-person.svg") ;
