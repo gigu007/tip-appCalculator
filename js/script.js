@@ -24,11 +24,11 @@ reqBill.addEventListener("input", isEmptyReqBill);
 function isEmptyReqBill(){
     if(reqBill.value=="" || reqBill.value==0){
         confirm.classList.add("confirm");
-        confirm.textContent="Can't be zero,empty"
+        confirm.textContent="Can't be zero, or empty"
         confirm.style.color = "red";
         confirm.style.marginTop="5px"
-        reqBill.style.borderColor="hsl(0,67%,45)";
-        numberOfPeople.style.borderColor="grey";
+        reqBill.style.borderColor="red";
+        // numberOfPeople.style.borderColor="grey";
         reqBill.insertAdjacentElement("afterend",confirm);
         reqBill.value="";
         reqBill.focus();
@@ -36,7 +36,7 @@ function isEmptyReqBill(){
         allPercentage.forEach(percentage=>{
             percentage.disabled=true;
         })
-        // disableAllbtnPercentage();
+        
         numberOfPeople.disabled=true;
         customPercentage.disabled=true;
         resetBtn.disabled=true;
@@ -92,6 +92,10 @@ function customPercent(){
         getResponse();
     }else if(this.value > max || this.value <=min){
         customPercentage.value="";
+        confirm.textContent='input value from 1 to 100'
+        confirm.style.color='red'
+        customPercentage.insertAdjacentElement("afterend",confirm)
+        customPercentage.style.borderColor='red';
         this.select();
     }
 }
@@ -124,6 +128,7 @@ function isEmptyInputNumberOfPeople(){
         confirm.style.color="hsl(0,67%,45%)";
         numberOfPeople.style.color="blue";
         numberOfPeople.insertAdjacentElement("afterend",confirm);
+        numberOfPeople.style.borderColor='red'
         numberOfPeople.value="";
         numberOfPeople.focus();
         total.innerText="$0.00";
